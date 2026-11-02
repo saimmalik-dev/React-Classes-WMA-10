@@ -2,7 +2,9 @@ import React from 'react'
 
 function Heading() {
     return (
-        <div>Heading Component</div>
+        <div>
+            This is heading from Heading.jsx
+        </div>
     )
 }
 
