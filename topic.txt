@@ -1,0 +1,106 @@
+Traditional  vs React 
+ Traditional -> state + ui both have to be updated manually
+ React -> only update state, ui will automatically updated by react itself.
+
+
+
+
+create react app
+
+create vite@latest --react-js
+
+node js -> js runtime environment
+npm -> node package manager
+
+ESLint -> ECMAScript Lint
+
+
+command to create react + vite project npm create vite@latest
+command to run  -> npm run dev
+
+jsx-> javascript + html, javascript xml
+
+
+
+
+
+
+
+
+
+TODAY'S TOPICS
+What is JSX -> jsx is js-xml that allows you to write markup with js code.
+What are React Fragments? -> jsx fragment is used to add wrapper around multiple html section or react components. to prevent from error
+what are props -> properties. -> props are used to send data from parent to child. props are read-only
+
+what is state. -> component mein jitni bhi values hain, wo us component ki state. Values or data present in our react component is state of that component
+
+what is list and conditional rendering 
+
+
+
+
+create heading elem in js
+
+const heading  = document.createeLEM
+heading.innertext  ="heading"
+parent.appendChild(heading)
+
+
+JSX -> javascript + xml -> used in react
+      <h1>{heading}</h1>
+
+
+
+
+
+JSX -> https://react.dev/learn/writing-markup-with-jsx
+
+State -> https://react.dev/learn/managing-state
+Hooks -> https://react.dev/reference/react/hooks
+
+
+
+
+
+
+
+
+
+
+
+
+5 pages -> every page 5 components
+
+app.jsx
+ total imports -> 25 
+total component call -> 25
+
+create pages folder-> page wise files
+
+
+
+Today's topics - 11/6/26
+
+Virtual and Real DOM -> proces of updating the real dom form the virtual dom in react is known as reconciliation. and algorithm used for this is diffing
+
+
+How to Handle Events in React
+what is hook
+how react rendering works
+useState in Depth
+State vs Props
+Re-rendering Basics
+Forms in React
+
+
+prop -> ki value -> used in onclick event
+onclick function -> prop
+
+
+
+
+
+
+
+

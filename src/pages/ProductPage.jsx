@@ -29,6 +29,8 @@ function ProductPage() {
             image: "https://via.placeholder.com/150"
         },
     ]
+
+
     const [loading, setloading] = useState(true)
 
     setTimeout(() => {
@@ -38,7 +40,7 @@ function ProductPage() {
     return (
         <div>
             <h1>
-                This is Product Page
+                This is Products Page
             </h1>
             {/* here is the jsx */}
             {
@@ -46,7 +48,7 @@ function ProductPage() {
                 loading ? "Loading...." : // conditional rendering
                     products.map((item, index) => {
                         return (
-                            <ProductCard product={item} /> // product -> prop name, item -> prop value
+                            <ProductCard product={item}  /> // product -> prop name, item -> prop value
                         )
                     })
             }

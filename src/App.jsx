@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductPage from './pages/ProductPage'
+import Button from './components/Button';
+
 
 function App() {
+
+  // const [state, setState] = useState(initialState) // first variable is state variable, second variable is function to update the state variable, initialState is the initial value of the state variable
+
+
+  // let index = 0
+  const [index, setIndex] = useState(0)
+
+  const handleClick = () => {
+    console.log("Button is clicked");
+    setIndex(index + 1)
+    console.log("index", index);
+  }
+
+
+
   return (
     <div>
 
       <h1>This is App.JSX</h1>
+      <h1>Index: {index}</h1>
+      <Button ClickFunction={handleClick} btnText="App.js KA button" />
+      {/* <button onClick={handleClick}>Click Me</button> */}
 
       <ProductPage />
 

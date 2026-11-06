@@ -1,9 +1,15 @@
 import React from 'react'
+import Button from './Button';
 
 // function ProductCard(props) { //directly getting props object
-function ProductCard({ product }) {
-    console.log("product", product);
+function ProductCard({ product }) { // product -> prop
 
+
+    console.log("product", product);
+    const addToCart = () => {
+        console.log("product");
+
+    }
     return (
         <div>
             <div>
@@ -18,7 +24,8 @@ function ProductCard({ product }) {
                 </span>
             </div>
             <div>
-                <button>Order now</button>
+                <Button onClick={addToCart} btnText="Add to Cart" />
+                {/* <button onClick={() => addToCart(product)}>Add to Cart</button> */}
             </div>
 
         </div>
