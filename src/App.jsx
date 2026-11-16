@@ -22,9 +22,10 @@ function App() {
   return (
     <div>
 
-      <h1>This is App.JSX</h1>
+      <h1 style={{ color: "blue" }}>This is App.JSX</h1>
       <h1>Index: {index}</h1>
       <Button ClickFunction={handleClick} btnText="App.js KA button" />
+      {/* <button></button> */}
       {/* <button onClick={handleClick}>Click Me</button> */}
 
       <ProductPage />
@@ -34,6 +35,41 @@ function App() {
 }
 
 export default App
+
+
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    // 1. Initialize local state
+    this.state = {
+      count: 0
+    };
+  }
+
+  // 2. Lifecycle method (runs after component mounts to the DOM)
+  componentDidMount() {
+    console.log('Counter mounted');
+  }
+
+  // 3. Custom event handler (arrow function auto-binds `this`)
+  increment = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  // 4. Required method to return UI
+  render() {
+    return (
+      <div>
+        <h2>{this.props.title}</h2>
+        <p>Current count: {this.state.count}</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    );
+  }
+}
+
+// export default Counter;
 
 
 
@@ -105,3 +141,19 @@ export default App
 // //   const newCount = count + 3
 // //   return count, newCount
 // // }
+
+
+
+
+
+const obj = {
+  name: "John",
+  age: 30,
+  city: "New York"
+}
+// const age = obj.age
+const { age, name } = obj
+
+
+
+
