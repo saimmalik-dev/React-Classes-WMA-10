@@ -1,275 +1,173 @@
-import React, { useState } from 'react'
-import Input from './components/Input';
+import React, { useEffect, useState } from 'react'
 
 function App() {
 
-  const [name, setName] = useState("")
-  const handleChange = (e) => {
-    setName(e.target.value) // async function
-    console.log("name", name);// console will execute before the state is updated
-  }
+    const [products, setProducts] = useState([])
+    const [counter, setcounter] = useState(0)
 
-  const [email, setEmail] = useState("")
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value)
-    console.log("email", email);
-  }
-
-  const [gender, setGender] = useState("")
-  const handleChangeGender = (e) => {
-    setGender(e.target.value)
-    console.log("gender", gender);
-  }
-  // const [gender, setgender] = useState(second)
-
-  const [course, setCourse] = useState([])
-  const handleChangeCourse = (e) => {
-    setCourse([...course, e.target.value])
-    // setCourse((previousState) => [...previousState, e.target.value])
-    console.log("course", course);
-  }
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("---- Form is submitted --- ");
-
-    console.log("name", name);
-    console.log("email", email);
-    if (gender == "") {
-      alert("select gender")
-      return
+    const getProducts = () => {
+        fetch("https://fakestoreapi.noksha.dev/api/products")
+            .then((res) => res.json())
+            .then((json) => setProducts(json.data || json))
+            .catch((error) => console.error("Error fetching products:", error));
     }
-    if (course.length == 0) {
-      alert("Select your course")
-      return
-    }
-  }
+    // getProducts()
 
-  return (
-    <>
-      <h1>This is App.JSX</h1>
-      <form action="" onSubmit={handleSubmit} >
+    console.log("Component mount");
+    // useEffect(() => { // allows you to run code after mounting. 
+    //     console.log("Use effect runs");
+    //     // fetch("https://fakestoreapi.noksha.dev/api/products")
+    //     //     .then((res) => res.json())
+    //     //     .then((json) => setProducts(json.data || json))
+    //     //     .catch((error) => console.error("Error fetching products:", error));
+    // }, [])
+
+
+    //     useEffect(() => {
+
+    //     } // CALLBACK function, 
+    // [] // DEPENDENCY ARRAY
+    //     )
+
+
+    // Dependency array 
+
+    useEffect(() => {
+        console.log("USE effect runs");
+
+    }, // CALLBACK function, 
+        [counter] // DEPENDENCY ARRAY
+    )
+
+
+
+
+    // setInterval(() => {
+    //     fetch("https://fakestoreapi.noksha.dev/api/products")
+    //         .then((res) => res.json())
+    //         .then((json) => setProducts(json.data || json))
+    //         .catch((error) => console.error("Error fetching products:", error));
+    //     console.log("Component rendered after 5 seconds");
+    // }, 5000);
+
+
+    return (
         <div>
-          <label htmlFor="">Name</label>
-          <Input
-            value={name}
-            onChange={handleChange}
-          />
+            <button onClick={getProducts}>
+                Get Data
+            </button>
+            <h1>Hello React</h1>
+            <p>Counter: {counter}</p>
+            <button onClick={() => setcounter(counter + 1)}>Increment</button>
 
-        </ div>
 
-        <div>
-          <label htmlFor="">Email</label>
-            <Input
-            type='email'
-            placeholder="Enter your email"
-            value={email}
-            onChange={handleChangeEmail}
-          />
-          {/* <input type="email" placeholder='Enter Your Name'
-            value={email}
-            onChange={handleChangeEmail}
-            style={{
-              border: "2px solid red",
-              height: "20px"
-            }}
-          /> */}
+
+
+
+
+            {products.map((product) => (
+                <div key={product.id}>
+                    <h2>{product.title}</h2>
+                    <p>{product.description}</p>
+                    <p>${product.price.toFixed(2)}</p>
+                </div>
+            ))}
         </div>
-
-        <div>
-          <label htmlFor="">Password</label>
-          <input type="password" placeholder='Enter Your Name' />
-        </div>
-
-
-        <div>
-          <label htmlFor="">Gender</label> <br />
-          <label htmlFor="male">Male</label>
-          <input type="radio" name='gender' id='male' value={"male"} onChange={handleChangeGender} />
-          <label htmlFor="female">Female</label>
-          <input type="radio" name='gender' id='female' value={"female"} onChange={handleChangeGender} />
-        </div>
-
-
-        <div>
-          <label htmlFor="">Courses</label> <br />
-          <label htmlFor="">Maths</label>
-          <input type="checkbox" name='course' value={"maths"} onChange={handleChangeCourse} />
-          <label htmlFor="">Eng</label>
-          <input type="checkbox" name='course' value={"eng"} onChange={handleChangeCourse} />
-          <label htmlFor="">Phy</label>
-          <input type="checkbox" name='course' value={"phy"} onChange={handleChangeCourse} />
-          <label htmlFor="">CS</label>
-          <input type="checkbox" name='course' value={"cs"} onChange={handleChangeCourse} />
-        </div>
-
-        <button type='submit'>Submit</button>
-
-      </form>
-    </>
-  )
+    )
 }
 
 export default App
 
-
-// import React, { useState } from 'react'
-// import ProductPage from './pages/ProductPage'
-// import Button from './components/Button';
-
+// import React from 'react'
+// import { useForm } from "react-hook-form"
 
 // function App() {
 
-//   // const [state, setState] = useState(initialState) // first variable is state variable, second variable is function to update the state variable, initialState is the initial value of the state variable
+//     // register -> input state, validation, error handling
+//     // handlesumbit -> submit the form
+//     // fromState -> errors,
+
+//     const { register, handleSubmit, formState: { errors } } = useForm()
+//     // console.log("register", register);
+//     // console.log(" handleSubmit,", handleSubmit);
+//     // console.log(" formState", formState);
+//     // console.log(" formState", formState.errors);
+//     console.log(errors);
+
+//     // const { register, handleSubmit, formState: { errors } } = useForm()
+//     // handleSubmit() // abhi yeh sirf validations ko check kryga
 
 
-//   // let index = 0
-//   const [index, setIndex] = useState(0)
+//     const onSubmit = (values) => {
+//         console.log("Form is submitted", data);
 
-//   const handleClick = () => {
-//     console.log("Button is clicked");
-//     setIndex(index + 1)
-//     console.log("index", index);
-//   }
+//     }
+
+//     return (
+//         <div>
+//             <form action="" onSubmit={handleSubmit(onSubmit)}>
+
+
+//                 <label htmlFor='name'>Name <span style={{ color: "red" }}> (*)</span> </label>
+//                 <input type="text"
+//                  {...register("name", {
+//                     required: "Name is required"
+//                 })}
+//                 />
+//                 {errors.name ? <p style={{ color: "red" }}>{errors.name.message}</p> : ""}
+
+
+//                 <label htmlFor="email">Email</label>
+//                 {/* <input type="text" value={} onChange={} name='' id='email' /> */}
+//                 <input type="email"
+//                     {...register("email", {
+//                         required: "Email is required",
+
+//                     })}
+//                 />
+//                 {errors.email && <p style={{ color: "red" }} > {errors.email.message} </p>}
 
 
 
-//   return (
-//     <div>
-
-//       <h1 style={{ color: "blue" }}>This is App.JSX</h1>
-//       <h1>Index: {index}</h1>
-//       <Button ClickFunction={handleClick} btnText="App.js KA button" />
-//       {/* <button></button> */}
-//       {/* <button onClick={handleClick}>Click Me</button> */}
-
-//       <ProductPage />
-
-//     </div>
-//   )
+//                 <button>Submit</button>
+//             </form>
+//         </div >
+//     )
 // }
 
 // export default App
 
 
 
-// class Counter extends Component {
-//   constructor(props) {
-//     super(props);
-//     // 1. Initialize local state
-//     this.state = {
-//       count: 0
-//     };
-//   }
 
-//   // 2. Lifecycle method (runs after component mounts to the DOM)
-//   componentDidMount() {
-//     console.log('Counter mounted');
-//   }
-
-//   // 3. Custom event handler (arrow function auto-binds `this`)
-//   increment = () => {
-//     this.setState({ count: this.state.count + 1 });
-//   };
-
-//   // 4. Required method to return UI
-//   render() {
-//     return (
-//       <div>
-//         <h2>{this.props.title}</h2>
-//         <p>Current count: {this.state.count}</p>
-//         <button onClick={this.increment}>Increment</button>
-//       </div>
-//     );
-//   }
-// }
-
-// // export default Counter;
+// // export default function App() {
+// //     const {
+// //         register,
+// //         handleSubmit,
+// //         formState: { errors },
+// //     } = useForm({
+// //         defaultValues: { email: "" },
+// //     })
 
 
+// //     const onSubmit = (data) => {
+// //         console.log(data)
+// //     }
 
 
-// // import { useState } from 'react'
-// // import './App.css'
-// // import Heading from '../components/Heading'
-// // // import Heading from "./components/Heading.jsx"
-// // // import Count from "./Count.jsx"
+// //     return (
+// //         <form onSubmit={handleSubmit(onSubmit)}>
+// //             <label htmlFor="email">Email</label>
+// //             <input
+// //                 id="email"
+// //                 type="email"
+// //                 aria-invalid={errors.email ? "true" : "false"}
+// //                 {...register("email", { required: "Email is required" })}
+// //             />
+// //             {errors.email && <p role="alert">{errors.email.message}</p>}
 
 
-// // function App() {
-
-// //   // let counter = 0
-// //   const [counter, setCounter] = useState(0)
-// //   const heading = "This is heading"
-
-// //   return (
-// //     <>
-// //       {/* JSX fragment  */}
-
-// //       {/* HeadingCOmponent */}
-
-// //       {/* HEROSECTION */}
-// //       {/* <h1>This is heading </h1> */}
-// //       <Heading />
-
-// //       {/* <Count /> */}
-// //       {/* <Heading></Heading> */}
-// //       <section id="">
-// //         <h1>This is my First React Project</h1>
-
-// //         counter: {counter}
-
-// //         <button onClick={() => {
-// //           // counter++
-
-// //           setCounter(counter + 1)
-// //           console.log(counter);
-
-// //         }}>
-// //           Increment
-// //         </button>
-// //       </section>
-
-// //       <footer>
-// //         this is footer
-// //       </footer>
-
-// //     </>
-
-// //   )
-// // } // functional component -> App
-
-// // export default App
-
-
-// // // function Counter(count) {
-// // //   count = count + 1
-// // //   return count
-// // //   return newCount
-// // // }
-
-
-
-// // // JS function -> only return single value
-// // // function Counter(count) {
-// // //   count = count + 1
-// // //   const newCount = count + 3
-// // //   return count, newCount
-// // // }
-
-
-
-
-
-// const obj = {
-//   name: "John",
-//   age: 30,
-//   city: "New York"
-// }
-// // const age = obj.age
-// const { age, name } = obj
-
-
-
-
+// //             <button type="submit">Submit</button>
+// //         </form>
+// //     )
+// // }
