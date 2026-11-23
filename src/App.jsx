@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ResponsiveCard from './ResponsiveCard';
 
 function App() {
 
@@ -53,22 +54,32 @@ function App() {
 
     return (
         <div>
-            <button onClick={getProducts}>
+
+            <h1 className="text-3xl text-red-500 sm:text-blue-500">This is heading</h1>
+            {/* <button onClick={getProducts}>
                 Get Data
-            </button>
-            <h1>Hello React</h1>
-            <p>Counter: {counter}</p>
-            <button onClick={() => setcounter(counter + 1)}>Increment</button>
+            </button> */}
+            <ResponsiveCard />
+            {/* default tailwind colors
+text-red-500 -> 50- 950 range
+custom color
+text-[hex-code]
+text-[rgb]
+*/}
+
+            {/* <h1 className='text-blue-500 animate-pulse font-bold font-serif hover:bg-red-600 hover:rounded-lg   hover:font-light  bg-[#ff5733] '>Hello React</h1> */}
+            {/* <p>Counter: {counter}</p>
+            <button onClick={() => setcounter(counter + 1)}>Increment</button> */}
 
 
 
-            {products.map((product) => (
+            {/* {products.map((product) => (
                 <div key={product.id}>
                     <h2>{product.title}</h2>
                     <p>{product.description}</p>
                     <p>${product.price.toFixed(2)}</p>
                 </div>
-            ))}
+            ))} */}
         </div>
     )
 }
