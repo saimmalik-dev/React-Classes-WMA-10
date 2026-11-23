@@ -62,9 +62,6 @@ function App() {
 
 
 
-
-
-
             {products.map((product) => (
                 <div key={product.id}>
                     <h2>{product.title}</h2>
