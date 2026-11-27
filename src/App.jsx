@@ -1,181 +1,145 @@
 import React, { useEffect, useState } from 'react'
-import ResponsiveCard from './ResponsiveCard';
 
 function App() {
+// hooks, funciton, loops, if else, switch case, ternary operator, map, filter, reduce, find, findIndex, some, every
 
-    const [products, setProducts] = useState([])
-    const [counter, setcounter] = useState(0)
+const [products, setproducts] = useState([])
+const [count, setCount] = useState(0)
+// useEffect syntax -> only allow you to return cleanup funciton, not a promise
+useEffect(
+  // effect callback function 
+   ()=>{
+ async   function GetData(){
+  console.log("UseEffect start here");
+const getalluser = await getalluser()
+const signleUser = await getuserbyid(1)
 
-    const getProducts = () => {
-        fetch("https://fakestoreapi.noksha.dev/api/products")
-            .then((res) => res.json())
-            .then((json) => setProducts(json.data || json))
-            .catch((error) => console.error("Error fetching products:", error));
-    }
-    // getProducts()
+}
 
-    console.log("Component mount");
-    // useEffect(() => { // allows you to run code after mounting. 
-    //     console.log("Use effect runs");
-    //     // fetch("https://fakestoreapi.noksha.dev/api/products")
-    //     //     .then((res) => res.json())
-    //     //     .then((json) => setProducts(json.data || json))
-    //     //     .catch((error) => console.error("Error fetching products:", error));
-    // }, [])
-
-
-    //     useEffect(() => {
-
-    //     } // CALLBACK function, 
-    // [] // DEPENDENCY ARRAY
-    //     )
+return ()=>{
+  console.log("UseEffect cleanup function");
+}
+}
 
 
-    // Dependency array 
+, [count])
 
-    useEffect(() => {
-        console.log("USE effect runs");
+// if no dependency array is provided, the effect will run after every render.
+// if empty array -> the effect will run only once after the initial render.
+// if state variable is provided in the dependency array, the effect will run after the initial render and whenever that state variable changes.
+  return (
+    // only jsx code is allowed here, no js code is allowed here
+    <div>
 
-    }, // CALLBACK function, 
-        [counter] // DEPENDENCY ARRAY
-    )
-
-
-
-
-    // setInterval(() => {
-    //     fetch("https://fakestoreapi.noksha.dev/api/products")
-    //         .then((res) => res.json())
-    //         .then((json) => setProducts(json.data || json))
-    //         .catch((error) => console.error("Error fetching products:", error));
-    //     console.log("Component rendered after 5 seconds");
-    // }, 5000);
-
-
-    return (
-        <div>
-
-            <h1 className="text-3xl text-red-500 sm:text-blue-500">This is heading</h1>
-            {/* <button onClick={getProducts}>
-                Get Data
-            </button> */}
-            <ResponsiveCard />
-            {/* default tailwind colors
-text-red-500 -> 50- 950 range
-custom color
-text-[hex-code]
-text-[rgb]
-*/}
-
-            {/* <h1 className='text-blue-500 animate-pulse font-bold font-serif hover:bg-red-600 hover:rounded-lg   hover:font-light  bg-[#ff5733] '>Hello React</h1> */}
-            {/* <p>Counter: {counter}</p>
-            <button onClick={() => setcounter(counter + 1)}>Increment</button> */}
-
-
-
-            {/* {products.map((product) => (
+    <button onClick={() => setCount(count + 1)}>Increment</button>
+    <p>Count: {count}</p>
+          {products.map((product) => (
                 <div key={product.id}>
                     <h2>{product.title}</h2>
                     <p>{product.description}</p>
                     <p>${product.price.toFixed(2)}</p>
                 </div>
-            ))} */}
-        </div>
-    )
+            ))}
+
+    </div>
+  )
 }
 
 export default App
 
-// import React from 'react'
-// import { useForm } from "react-hook-form"
+
+// useEffect is a React Hook that lets you synchronize a component with an external system and run side effects after rendering. It accepts a setup function and an optional dependency array: useEffect(setup, dependencies?).
+
+// How It Works
+
+// • Runs after render: Code inside useEffect executes after React updates the DOM, not during rendering.
+// • Dependency array controls re-runs:
+// 	• No array: Runs after every render.
+// 	• Empty array ([]): Runs once when the component mounts.
+// 	• Array with values ([a, b]): Runs on mount and whenever a or b changes.
+
+
+// • Cleanup function: Returning a function from useEffect cleans up resources (like timers or subscriptions) before the effect re-runs or the component unmounts.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react'
 
 // function App() {
+//     const [count, setCount] = useState(0)
+//     console.log('App rendered')
+//     const [products, setprdocuts] = useState([])
+//     // backend data fetching is asynchronous
+//     // api call
+//     // fetch('https://fakestoreapi.noksha.dev/api/products')
+//     //     .then(res => res.json())
+//     //     .then(json => {
 
-//     // register -> input state, validation, error handling
-//     // handlesumbit -> submit the form
-//     // fromState -> errors,
+//     //         console.log(json)
+//     //         setprdocuts(json.data)
+//     //     })
 
-//     const { register, handleSubmit, formState: { errors } } = useForm()
-//     // console.log("register", register);
-//     // console.log(" handleSubmit,", handleSubmit);
-//     // console.log(" formState", formState);
-//     // console.log(" formState", formState.errors);
-//     console.log(errors);
+//     const funct = () => {
+//         fetch('https://fakestoreapi.noksha.dev/api/products')
+//             .then(res => res.json())
+//             .then(json => {
 
-//     // const { register, handleSubmit, formState: { errors } } = useForm()
-//     // handleSubmit() // abhi yeh sirf validations ko check kryga
-
-
-//     const onSubmit = (values) => {
-//         console.log("Form is submitted", data);
-
+//                 console.log(json)
+//                 setprdocuts(json.data)
+//             })
 //     }
+//     // funct()
+
+//     // useEffect(() => {
+//     //   first
+
+//     //   return () => {
+//     //     second
+//     //   }
+//     // }, [third])
+
+//     useEffect(() => {
+//         console.log("UseEffect start here");
+        
+//         fetch('https://fakestoreapi.noksha.dev/api/products')
+//             .then(res => res.json())
+//             .then(json => {
+
+//                 console.log(json)
+//                 setprdocuts(json.data)
+//             })
+//     }, []) // 2 parameter -> effect callback, dependency array
+
+// console.log("THIS IS AFTER USEEFFECT");
+
+
 
 //     return (
 //         <div>
-//             <form action="" onSubmit={handleSubmit(onSubmit)}>
-
-
-//                 <label htmlFor='name'>Name <span style={{ color: "red" }}> (*)</span> </label>
-//                 <input type="text"
-//                  {...register("name", {
-//                     required: "Name is required"
-//                 })}
-//                 />
-//                 {errors.name ? <p style={{ color: "red" }}>{errors.name.message}</p> : ""}
-
-
-//                 <label htmlFor="email">Email</label>
-//                 {/* <input type="text" value={} onChange={} name='' id='email' /> */}
-//                 <input type="email"
-//                     {...register("email", {
-//                         required: "Email is required",
-
-//                     })}
-//                 />
-//                 {errors.email && <p style={{ color: "red" }} > {errors.email.message} </p>}
-
-
-
-//                 <button>Submit</button>
-//             </form>
+//             <button onClick={funct}>Get data</button>
+//             <h1>This is React App</h1>
+//             <button onClick={() => setCount(count + 1)}>Increment</button>
+//             <p>Count: {count}</p>
+//             {products.map((product) => (
+//                 <div key={product.id}>
+//                     <h2>{product.title}</h2>
+//                     <p>{product.description}</p>
+//                     <p>${product.price.toFixed(2)}</p>
+//                 </div>
+//             ))}
 //         </div >
 //     )
 // }
 
 // export default App
-
-
-
-
-// // export default function App() {
-// //     const {
-// //         register,
-// //         handleSubmit,
-// //         formState: { errors },
-// //     } = useForm({
-// //         defaultValues: { email: "" },
-// //     })
-
-
-// //     const onSubmit = (data) => {
-// //         console.log(data)
-// //     }
-
-
-// //     return (
-// //         <form onSubmit={handleSubmit(onSubmit)}>
-// //             <label htmlFor="email">Email</label>
-// //             <input
-// //                 id="email"
-// //                 type="email"
-// //                 aria-invalid={errors.email ? "true" : "false"}
-// //                 {...register("email", { required: "Email is required" })}
-// //             />
-// //             {errors.email && <p role="alert">{errors.email.message}</p>}
-
-
-// //             <button type="submit">Submit</button>
-// //         </form>
-// //     )
-// // }
